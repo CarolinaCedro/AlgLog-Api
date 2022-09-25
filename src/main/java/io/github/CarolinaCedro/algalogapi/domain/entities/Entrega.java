@@ -1,5 +1,6 @@
 package io.github.CarolinaCedro.algalogapi.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,5 +30,6 @@ public class Entrega {
     private StatusEntrega status;
 
     private LocalDateTime dataPedido;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataFinalizacao;
 }

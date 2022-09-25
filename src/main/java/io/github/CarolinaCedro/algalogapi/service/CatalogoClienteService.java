@@ -12,6 +12,11 @@ public class CatalogoClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    public Cliente buscar(Long clientId){
+        return clienteRepository.findById(clientId)
+                .orElseThrow(()-> new DomainException("Cliente não encontrado"));
+    }
+
     @Transactional
     public Cliente save(Cliente cliente) {
         boolean emailEmUso = clienteRepository.findByEmail(cliente.getEmail())
