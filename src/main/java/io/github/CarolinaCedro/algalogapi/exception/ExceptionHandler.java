@@ -45,4 +45,14 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(DomainException.class)
+    public ResponseEntity<Object> handleNegocio(DomainException ex,WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        Errors errors = new Errors();
+        errors.setStatus(status.value());
+        errors.setDataHora(LocalDate.now());
+        errors.setTitulo(ex.getMessage());
+        return handleExceptionInternal(ex,errors,new HttpHeaders(),status,request);
+    }
+
 }
